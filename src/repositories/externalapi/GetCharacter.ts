@@ -2,7 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import {ICharacter, ICharacterFoundsCriteria} from "../../models/domain/CharacterModel";
 
-dotenv.configDotenv();
+dotenv.config();
 
 const EXTERNAL_API = <string> process.env.EXTERNAL_API;
 
@@ -45,7 +45,7 @@ const filterByOrigin = (foundsCriteria: ICharacterFoundsCriteria, characters: IC
     return characters;
 }
 
-export const getCharacterByFilters = async (foundsCriteria: ICharacterFoundsCriteria) => {
+export const getCharacterByFilters = async (foundsCriteria: ICharacterFoundsCriteria): Promise<ICharacter[]> => {
         try {
             const url = buildQueryUrl(foundsCriteria);
             const { data } = await axios.get(url);
@@ -55,6 +55,6 @@ export const getCharacterByFilters = async (foundsCriteria: ICharacterFoundsCrit
             return filterByOrigin(foundsCriteria, characters)
         } catch (error) {
             console.error(error);
-            return [];
+            throw error;
         }
 }

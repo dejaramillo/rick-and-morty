@@ -1,18 +1,15 @@
-import CharacterRepository from "../repositories/db/CharacterRepository";
+import { CharacterRepository } from "../repositories/db/CharacterRepository";
 import {getCharacterByFilters} from "../repositories/externalapi/GetCharacter";
-import {ICharacterFoundsCriteria} from "../models/domain/CharacterModel";
+import {ICharacter, ICharacterFoundsCriteria} from "../models/domain/CharacterModel";
 
 
-export const getCharactersByFilter = async (foundCriteria : ICharacterFoundsCriteria)  => {
-    const charByDbAndCharByApi = await   Promise.all([
-            CharacterRepository.findCharacters(foundCriteria),
-            getCharacterByFilters(foundCriteria)
-    ]);
+export const getCharactersByFilter = async (foundCriteria : ICharacterFoundsCriteria): Promise<ICharacter[]>  => {
+    const charByDb = await  CharacterRepository.findCharacters(foundCriteria);
 
-    if (charByDbAndCharByApi[0].length > 1){
-        return charByDbAndCharByApi[0];
+    if (charByDb.length > 0){
+        return charByDb.map((character) => character.get({ plain: true }));
     }else {
-        return charByDbAndCharByApi[1];
+        return getCharacterByFilters(foundCriteria);
     }
 }
 

@@ -12,11 +12,12 @@ const charSchema = buildSchema(`
     name: String!
     status: String
     species: String
+    type: String
     gender: String
     origin: Location
     location: Location
     image:    String
-    episode:  String
+    episode:  [String]
     url:      String  
     created:  String
   }

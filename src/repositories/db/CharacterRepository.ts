@@ -1,8 +1,8 @@
-import {ICharacterFoundsCriteria} from "../../models/domain/CharacterModel";
+import {ICharacter, ICharacterFoundsCriteria} from "../../models/domain/CharacterModel";
 import {IncludeOptions, Op} from "sequelize";
 import Origin from "../../models/request/OriginRequest";
 import Character from "../../models/request/CharacterRequest"
-import { WhereOptions } from "sequelize/types/model";
+import Model, { WhereOptions } from "sequelize/types/model";
 import {CharacterAttributes} from "../../models/types/DataBaseFilters";
 
 class CharacterRepository {
@@ -12,7 +12,7 @@ class CharacterRepository {
         const filtersBuilt = this.buildFilter(filters)
 
         try {
-            const characters = await Character.findAll({
+            const characters: Model<ICharacter>[] = await Character.findAll({
                 where: filtersBuilt.whereClause,
                 include: filtersBuilt.include
             });
@@ -64,7 +64,8 @@ class CharacterRepository {
 
 }
 
-const characterRepository = new CharacterRepository();
+const characterRepository: CharacterRepository = new CharacterRepository();
 
-export default characterRepository;
+export { characterRepository  as CharacterRepository};
+
 

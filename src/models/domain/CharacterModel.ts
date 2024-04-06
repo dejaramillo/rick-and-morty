@@ -6,12 +6,12 @@ export type Location = {
 
 export interface ICharacterFoundsCriteria {
 
-    name: string;
-    status: string;
-    species: string;
-    gender: string;
-    originName: string;
-    originUrl: string;
+    name?: string;
+    status?: string;
+    species?: string;
+    gender?: string;
+    originName?: string;
+    originUrl?: string;
 }
 
 
