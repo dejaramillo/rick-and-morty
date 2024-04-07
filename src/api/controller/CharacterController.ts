@@ -6,16 +6,22 @@ import {getCharByCache, setChar} from "../../repositories/cache/CharacterCacheRe
 export const getCharacters = {
     characters: async (foundsCriteria: ICharacterFoundsCriteria) => {
 
-        const cacheKey = buildCacheKey(foundsCriteria);
+        try{
 
-        const cacheData = await getCharByCache(cacheKey);
+            const cacheKey = buildCacheKey(foundsCriteria);
 
-        if (cacheData){
-             return  JSON.parse(cacheData);
-        }else {
-            const characters = await  getCharactersByFilter(foundsCriteria);
-            saveCache(characters, cacheKey);
-            return characters;
+            const cacheData = await getCharByCache(cacheKey);
+
+            if (cacheData){
+                 return  JSON.parse(cacheData);
+            }else {
+                const characters = await  getCharactersByFilter(foundsCriteria);
+                saveCache(characters, cacheKey);
+                return characters
+            }
+        } catch (err){
+            console.error(err);
+
         }
     },
 };

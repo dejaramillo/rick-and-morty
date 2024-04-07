@@ -10,6 +10,8 @@ const API_PATH = process.env.API_PATH || '';
 
 const app = express()
 
+app.use(express.json());
+
 app.get('/health', (_req: Request, res: Response) => {
     res.send('OK');
 });

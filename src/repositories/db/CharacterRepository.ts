@@ -1,6 +1,7 @@
 import {ICharacter, ICharacterFoundsCriteria} from "../../models/domain/CharacterModel";
 import {IncludeOptions, Op} from "sequelize";
 import Origin from "../../models/request/OriginRequest";
+import Location from "../../models/request/LocationRequest";
 import Character from "../../models/request/CharacterRequest"
 import Model, { WhereOptions } from "sequelize/types/model";
 import {CharacterAttributes} from "../../models/types/DataBaseFilters";
@@ -19,7 +20,6 @@ class CharacterRepository {
                 include: filtersBuilt.include
             });
 
-            console.log(characters);
             return characters;
         } catch (error) {
             console.error('Error during character fetch:', error);
@@ -73,23 +73,29 @@ class CharacterRepository {
         if (filters.gender) whereClause.gender = { [Op.eq]: filters.gender };
 
 
-        if (filters.originName || filters.originUrl) {
-            include.push({
-                model: Origin,
-                as: 'origin',
-                where: {},
-                required: false
-            });
+        include.push({
+                    model: Origin,
+                    as: 'origin',
+                    where: {},
+                    required: true
+                });
+
+
+        include.push({
+            model: Location,
+            as: 'location',
+            where: {},
+            required: false
+        });
 
             if (filters.originName) {
                 // @ts-ignore
-                include[include.length - 1].where.name = { [Op.iLike]: `%${filters.originName}%` };
+                include[include.length - 2].where.name = { [Op.eq]: filters.originName };
             }
             if (filters.originUrl) {
                 // @ts-ignore
-                include[include.length - 1].where.url = { [Op.eq]: filters.originUrl };
+                include[include.length - 2].where.url = { [Op.eq]: filters.originUrl };
             }
-        }
 
         return {
             include: include,
