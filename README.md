@@ -6,7 +6,7 @@ the project is about getting the rick and morty characters
 ## Solution Architecture
 
 
-![architecture diagram](https://github.com/dejaramillo/rick-and-morty/assets/56326334/d6929dc0-afa2-4a0a-b745-43abae8cde67)
+![architecture diagram](https://github.com/dejaramillo/rick-and-morty/assets/56326334/8228dbd6-edd4-40d4-a889-21bed2810880)
 
 It is basically a mvc architecture, where all processes are managed by the controller. In the model the processes are managed with the database.
 
