@@ -28,5 +28,10 @@ export interface ICharacter {
     episode:  string[];
     url:      string;
     created:  Date;
+    idExternalApi: number
 
+}
+
+export interface ICharacterUpdate extends ICharacter{
+    id_api: number;
 }

@@ -1,6 +1,7 @@
 import express, {Request, Response} from 'express';
 import dotenv from "dotenv";
 import router from "./api/routes";
+import {jobUpdateChar} from "./scheduler/UpdateCharScheduler";
 
 dotenv.config();
 
@@ -22,3 +23,6 @@ app.use(API_PATH, router);
 app.listen(PORT, () => {
     console.info(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
+
+jobUpdateChar.fireOnTick();
+console.log('Init update char job with server')

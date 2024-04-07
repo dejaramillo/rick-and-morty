@@ -8,6 +8,7 @@ import {CharacterAttributes} from "../../models/types/DataBaseFilters";
 import {OriginRepository} from "./OriginRepository";
 import {LocationRepository} from "./LocationRepository";
 
+
 class CharacterRepository {
 
     public async findCharacters(filters: ICharacterFoundsCriteria) {
@@ -28,6 +29,30 @@ class CharacterRepository {
 
     }
 
+    public async findAllCharacters(): Promise<Model<ICharacter>[]> {
+
+        const include: IncludeOptions[] = this.addIncludesToQuery()
+
+        return Character.findAll({
+            include: include
+        });
+
+    }
+
+    public async updateCharacter(character: ICharacter){
+
+        const [characterResponse, created] : [Model<ICharacter>, boolean] = await Character.findOrCreate({
+            where: {id: character.id}
+        });
+
+        if (!created){
+            return characterResponse.update(character);
+
+        }
+
+        throw new Error('Cannot update because char has not been created')
+
+    }
 
     public async putCharacter(character: ICharacter){
 
@@ -52,7 +77,8 @@ class CharacterRepository {
                 url: character.url,
                 created_at: new Date(character.created),
                 originId: origin.id,
-                locationId: location.id
+                locationId: location.id,
+                id_external_api: character.idExternalApi
                 }
             });
 
@@ -64,7 +90,7 @@ class CharacterRepository {
 
     private buildFilter(filters: ICharacterFoundsCriteria) {
         const whereClause: WhereOptions<CharacterAttributes> = {};
-        const include: IncludeOptions[] = [];
+
 
 
         if (filters.name) whereClause.name = { [Op.iLike]: `%${filters.name}%` || ''};
@@ -72,13 +98,35 @@ class CharacterRepository {
         if (filters.species) whereClause.species = { [Op.iLike]: `%${filters.species}%` };
         if (filters.gender) whereClause.gender = { [Op.eq]: filters.gender };
 
+        const include: IncludeOptions[] = this.addIncludesToQuery()
+
+
+        if (filters.originName) {
+            // @ts-ignore
+            include[include.length - 2].where.name = { [Op.eq]: filters.originName };
+        }
+        if (filters.originUrl) {
+            // @ts-ignore
+            include[include.length - 2].where.url = { [Op.eq]: filters.originUrl };
+        }
+
+        return {
+            include: include,
+            whereClause: whereClause
+        }
+
+    }
+
+    private addIncludesToQuery(){
+
+        const include: IncludeOptions[] = [];
 
         include.push({
-                    model: Origin,
-                    as: 'origin',
-                    where: {},
-                    required: true
-                });
+            model: Origin,
+            as: 'origin',
+            where: {},
+            required: true
+        });
 
 
         include.push({
@@ -88,19 +136,7 @@ class CharacterRepository {
             required: false
         });
 
-            if (filters.originName) {
-                // @ts-ignore
-                include[include.length - 2].where.name = { [Op.eq]: filters.originName };
-            }
-            if (filters.originUrl) {
-                // @ts-ignore
-                include[include.length - 2].where.url = { [Op.eq]: filters.originUrl };
-            }
-
-        return {
-            include: include,
-            whereClause: whereClause
-        }
+        return include
 
     }
 

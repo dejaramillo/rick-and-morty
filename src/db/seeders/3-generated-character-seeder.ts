@@ -67,7 +67,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/51"
         ],
         "url": "https://rickandmortyapi.com/api/character/1",
-        "created_at": "2024-04-07T03:02:43.492Z"
+        "created_at": "2024-04-07T03:02:43.492Z",
+        "id_external_api": 1
       },
       {
         "id": 111,
@@ -83,7 +84,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/28"
         ],
         "url": "https://rickandmortyapi.com/api/character/8",
-        "created_at": "2024-04-07T03:02:43.535Z"
+        "created_at": "2024-04-07T03:02:43.535Z",
+        "id_external_api": 8
       },
       {
         "id": 107,
@@ -149,7 +151,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/51"
         ],
         "url": "https://rickandmortyapi.com/api/character/2",
-        "created_at": "2024-04-07T03:02:43.503Z"
+        "created_at": "2024-04-07T03:02:43.503Z",
+        "id_external_api": 2
       },
       {
         "id": 108,
@@ -206,7 +209,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/51"
         ],
         "url": "https://rickandmortyapi.com/api/character/3",
-        "created_at": "2024-04-07T03:02:43.506Z"
+        "created_at": "2024-04-07T03:02:43.506Z",
+        "id_external_api": 3
       },
       {
         "id": 109,
@@ -260,7 +264,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/51"
         ],
         "url": "https://rickandmortyapi.com/api/character/5",
-        "created_at": "2024-04-07T03:02:43.518Z"
+        "created_at": "2024-04-07T03:02:43.518Z",
+        "id_external_api": 5
       },
       {
         "id": 110,
@@ -317,7 +322,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/51"
         ],
         "url": "https://rickandmortyapi.com/api/character/4",
-        "created_at": "2024-04-07T03:02:43.526Z"
+        "created_at": "2024-04-07T03:02:43.526Z",
+        "id_external_api": 4
       },
       {
         "id": 112,
@@ -333,7 +339,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/27"
         ],
         "url": "https://rickandmortyapi.com/api/character/6",
-        "created_at": "2024-04-07T03:02:43.538Z"
+        "created_at": "2024-04-07T03:02:43.538Z",
+        "id_external_api": 6
       },
       {
         "id": 113,
@@ -349,7 +356,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/24"
         ],
         "url": "https://rickandmortyapi.com/api/character/9",
-        "created_at": "2024-04-07T03:02:43.552Z"
+        "created_at": "2024-04-07T03:02:43.552Z",
+        "id_external_api": 9
       },
       {
         "id": 114,
@@ -366,7 +374,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/11"
         ],
         "url": "https://rickandmortyapi.com/api/character/7",
-        "created_at": "2024-04-07T03:02:43.541Z"
+        "created_at": "2024-04-07T03:02:43.541Z",
+        "id_external_api": 7
       },
       {
         "id": 115,
@@ -382,7 +391,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/12"
         ],
         "url": "https://rickandmortyapi.com/api/character/11",
-        "created_at": "2024-04-07T03:02:43.563Z"
+        "created_at": "2024-04-07T03:02:43.563Z",
+        "id_external_api": 11
       },
       {
         "id": 117,
@@ -398,7 +408,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/25"
         ],
         "url": "https://rickandmortyapi.com/api/character/10",
-        "created_at": "2024-04-07T03:02:43.575Z"
+        "created_at": "2024-04-07T03:02:43.575Z",
+        "id_external_api": 10
       },
       {
         "id": 118,
@@ -414,7 +425,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/10"
         ],
         "url": "https://rickandmortyapi.com/api/character/14",
-        "created_at": "2024-04-07T03:02:43.587Z"
+        "created_at": "2024-04-07T03:02:43.587Z",
+        "id_external_api": 14
       },
       {
         "id": 119,
@@ -430,7 +442,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/3"
         ],
         "url": "https://rickandmortyapi.com/api/character/12",
-        "created_at": "2024-04-07T03:02:43.582Z"
+        "created_at": "2024-04-07T03:02:43.582Z",
+        "id_external_api": 12
       },
       {
         "id": 116,
@@ -446,7 +459,8 @@ module.exports = {
           "https://rickandmortyapi.com/api/episode/31"
         ],
         "url": "https://rickandmortyapi.com/api/character/13",
-        "created_at": "2024-04-07T03:02:43.569Z"
+        "created_at": "2024-04-07T03:02:43.569Z",
+        "id_external_api": 13
       }
     ], {});
   },

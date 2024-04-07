@@ -1,6 +1,7 @@
 import Model from "sequelize/types/model";
 import {Origin as OriginModel} from "../../models/types/Origin";
 import Origin from "../../models/request/OriginRequest";
+import {flatDataByDb} from "../../utils/flatObjectsToDb";
 
 
 
@@ -15,10 +16,10 @@ class OriginRepository {
 
             if (created) {
                 console.log('New origin');
-                return originResponse.get({plain: true})
+                return flatDataByDb<OriginModel>(originResponse)
             } else {
                 console.log('Existing origin')
-                return  originResponse.get({plain: true})
+                return  flatDataByDb<OriginModel>(originResponse)
             }
 
 

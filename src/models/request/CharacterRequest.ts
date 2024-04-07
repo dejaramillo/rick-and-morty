@@ -57,6 +57,10 @@ const Character = sequelize.define('Character', {
         defaultValue: DataTypes.NOW,
         field: 'created_at'
     },
+    idExternalApi: {
+        type: DataTypes.INTEGER,
+        field: 'id_external_api'
+    }
 }, {
     tableName:'character',
     timestamps: false,

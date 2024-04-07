@@ -53,6 +53,10 @@ export const up = (queryInterface: QueryInterface): Promise<void> => {
       defaultValue: DataTypes.NOW,
       field: 'created_at'
     },
+    idExternalApi: {
+      type: DataTypes.INTEGER,
+      field: 'id_external_api'
+    }
   });
 };
 

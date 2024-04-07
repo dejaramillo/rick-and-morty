@@ -1,6 +1,7 @@
 import Model from "sequelize/types/model";
 import {Location as LocationModel} from "../../models/types/Location";
 import Location from "../../models/request/LocationRequest";
+import {flatDataByDb} from "../../utils/flatObjectsToDb";
 
 
 class LocationRepository {
@@ -15,10 +16,10 @@ class LocationRepository {
 
             if (created) {
                 console.log('New origin');
-                return locationResponse.get({plain: true})
+                return flatDataByDb<LocationModel>(locationResponse)
             } else {
                 console.log('Existing origin')
-                return  locationResponse.get({plain: true})
+                return  flatDataByDb<LocationModel>(locationResponse)
             }
 
         } catch (err: any){
