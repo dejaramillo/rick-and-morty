@@ -1,4 +1,4 @@
-import { ICharacterFoundsCriteria } from "../../models/domain/CharacterModel";
+import {ICharacter, ICharacterFoundsCriteria} from "../../models/domain/CharacterModel";
 import { getCharactersByFilter } from "../../services/CharacterServices";
 import {buildCacheKey} from "../../utils/BuildCacheKey";
 import {getCharByCache, setChar} from "../../repositories/cache/CharacterCacheRepository";
@@ -14,12 +14,19 @@ export const getCharacters = {
              return  JSON.parse(cacheData);
         }else {
             const characters = await  getCharactersByFilter(foundsCriteria);
-            setChar(cacheKey, characters)
-                .then(() => console.log('cache successfully saved'))
-                .catch(err => console.error(err.message));
-
+            saveCache(characters, cacheKey);
             return characters;
         }
     },
 };
 
+
+const saveCache =  (characters: ICharacter[], cacheKey: string) => {
+
+    if (characters.length > 0) {
+        setChar(cacheKey, characters)
+            .then(() => console.log('cache successfully saved'))
+            .catch(err => console.error(err.message));
+
+    }
+}

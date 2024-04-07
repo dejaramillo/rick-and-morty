@@ -39,7 +39,9 @@ class CharacterRepository {
 
 
 
-            return  Character.create({
+            return Character.findOrCreate({
+                where: { id: character.id},
+                defaults: {
                 name: character.name,
                 status: character.status,
                 species: character.species,
@@ -51,6 +53,7 @@ class CharacterRepository {
                 created_at: new Date(character.created),
                 originId: origin.id,
                 locationId: location.id
+                }
             });
 
         } catch (err: any){

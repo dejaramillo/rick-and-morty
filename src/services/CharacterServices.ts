@@ -9,13 +9,21 @@ export const getCharactersByFilter = async (foundCriteria : ICharacterFoundsCrit
     if (charByDb.length > 0){
         return charByDb.map((character) => character.get({ plain: true }));
     }else {
-        const chars = await  getCharacterByFilters(foundCriteria);
-        chars.forEach((char: ICharacter) => {
+        const characters = await  getCharacterByFilters(foundCriteria);
+        saveCharacterFromApi(characters);
+        return characters;
+
+    }
+}
+
+
+const saveCharacterFromApi = (characters: ICharacter[]) =>{
+
+    if (characters.length > 0) {
+        characters.forEach((char: ICharacter) => {
             CharacterRepository.putCharacter(char).then(() => console.log(`save ${char.name}`))
                 .catch(() => console.error('Cannot save char'));
         })
-        return chars;
-
     }
 }
 
