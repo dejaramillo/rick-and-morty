@@ -5,6 +5,7 @@ import Location from "./LocationRequest"
 
 
 
+
 const Character = sequelize.define('Character', {
     id: {
         type: DataTypes.INTEGER,
@@ -46,7 +47,7 @@ const Character = sequelize.define('Character', {
         field: 'location_id'
     },
     episode: {
-        type: DataTypes.STRING,
+        type: DataTypes.ARRAY(DataTypes.STRING),
     },
     url: {
         type: DataTypes.STRING,

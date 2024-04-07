@@ -1,8 +1,5 @@
-export type Location = {
-    name: string;
-    url:  string;
-}
-
+import {Origin} from "../types/Origin";
+import {Location} from "../types/Location";
 
 export interface ICharacterFoundsCriteria {
 
@@ -25,7 +22,7 @@ export interface ICharacter {
     species:  string;
     type:     string;
     gender:   string;
-    origin:   Location;
+    origin:   Origin;
     location: Location;
     image:    string;
     episode:  string[];

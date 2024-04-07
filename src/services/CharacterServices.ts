@@ -9,7 +9,13 @@ export const getCharactersByFilter = async (foundCriteria : ICharacterFoundsCrit
     if (charByDb.length > 0){
         return charByDb.map((character) => character.get({ plain: true }));
     }else {
-        return getCharacterByFilters(foundCriteria);
+        const chars = await  getCharacterByFilters(foundCriteria);
+        chars.forEach((char: ICharacter) => {
+            CharacterRepository.putCharacter(char).then(() => console.log(`save ${char.name}`))
+                .catch(() => console.error('Cannot save char'));
+        })
+        return chars;
+
     }
 }
 

@@ -4,6 +4,8 @@ import Origin from "../../models/request/OriginRequest";
 import Character from "../../models/request/CharacterRequest"
 import Model, { WhereOptions } from "sequelize/types/model";
 import {CharacterAttributes} from "../../models/types/DataBaseFilters";
+import {OriginRepository} from "./OriginRepository";
+import {LocationRepository} from "./LocationRepository";
 
 class CharacterRepository {
 
@@ -24,6 +26,37 @@ class CharacterRepository {
             throw error;
         }
 
+    }
+
+
+    public async putCharacter(character: ICharacter){
+
+
+        try {
+            const origin = await OriginRepository.putOrigin(character.origin);
+
+            const location = await LocationRepository.putLocation(character.location)
+
+
+
+            return  Character.create({
+                name: character.name,
+                status: character.status,
+                species: character.species,
+                type: character.type,
+                gender: character.gender,
+                image: character.image,
+                episode: character.episode,
+                url: character.url,
+                created_at: new Date(character.created),
+                originId: origin.id,
+                locationId: location.id
+            });
+
+        } catch (err: any){
+            console.error(err.message);
+            throw new Error("Cannot save character")
+        }
     }
 
     private buildFilter(filters: ICharacterFoundsCriteria) {
