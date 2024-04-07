@@ -28,7 +28,7 @@ export const updateChars = async () => {
         for (const char of charsByDb) {
 
             await updateIfChangeChar(char);
-            
+
         }
 
     }
