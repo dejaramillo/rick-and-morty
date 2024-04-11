@@ -11,6 +11,14 @@ export interface ICharacterFoundsCriteria {
     originUrl?: string;
 }
 
+export interface ICharacterIds {
+    firstCharId: number;
+    secondCharId: number;
+}
+
+export interface  IEpisodeMatchResponse {
+    result: number
+}
 
 
 
