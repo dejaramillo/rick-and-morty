@@ -29,6 +29,16 @@ class CharacterRepository {
 
     }
 
+
+    public async findCharById(id: number): Promise<Model<ICharacter, ICharacter> | null> {
+
+        const include: IncludeOptions[] = this.addIncludesToQuery();
+
+        return Character.findByPk(id,{
+                    include: include
+            });
+
+    }
     public async findAllCharacters(): Promise<Model<ICharacter>[]> {
 
         const include: IncludeOptions[] = this.addIncludesToQuery()

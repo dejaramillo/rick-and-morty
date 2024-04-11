@@ -21,9 +21,15 @@ const charSchema = buildSchema(`
     url:      String  
     created:  String
   }
+  
+ type episodeMatch {
+    result: Int
+  }
+  
 
   type Query {
     characters(name: String, status: String, species: String, gender: String, originName: String, originUrl: String): [Character]
+    compareCharacters(firstCharId: Int!, secondCharId: Int!): episodeMatch  
   }
 `);
 
